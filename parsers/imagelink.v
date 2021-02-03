@@ -2,9 +2,6 @@ module parsers
 
 /**
  * Parse a Markdown link with image into HTML
- * 
- * @author Isaiah
- * @version 0.0.1
  */
 pub fn parse_imagelink(text string) string {
 	mut s := text
@@ -22,12 +19,11 @@ pub fn parse_imagelink(text string) string {
 					mut link := s.substr(startpr+1, endpr)
 					mut start := s.substr(0, brac)
 					mut end   := s.substr(endpr+1, s.len)
-					mut a     := '<img src="' + link + '" alt="' + title +'">'
 					mut e     := end.substr(2, end.len)
 					end = end.substr(0, end.len - e.len - 2)
 					mut ebrac := e.index(')') or {-1}
 					e = e.substr(0, ebrac)
-					s = start + '<a href="' + e + '">' + a + end + '</a>'
+					s = start + '<a href="' + e + '"><img src="' + link + '" alt="' + title +'">' + end + '</a>'
 				}
 			}
 		}

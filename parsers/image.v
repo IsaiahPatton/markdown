@@ -2,8 +2,6 @@ module parsers
 
 /**
  * Parse a Markdown image into HTML
- * 
- * @author Isaiah
  */
 pub fn parse_image(text string) string {
 	mut s := text
@@ -19,10 +17,7 @@ pub fn parse_image(text string) string {
 				mut endpr := aft.index(')') or {-1}
 				if startpr != -1 && endpr != -1 {
 					mut link := s.substr(startpr+1, endpr)
-					mut start := s.substr(0, brac)
-					mut end   := s.substr(endpr+1, s.len)
-					mut a     := '<img src="' + link + '" alt="' + title +'">'
-					s = start + a + end
+					s = s.substr(0, brac) + '<img src="' + link + '" alt="' + title +'">' + s.substr(endpr+1, s.len)
 				}
 			}
 		}

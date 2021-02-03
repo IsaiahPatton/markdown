@@ -16,10 +16,7 @@ pub fn parse_italic(text string) string {
 		if t != ' ' {
 			mut endi := t.index('*') or {-1}
 			if endi != -1 {
-				mut tobold := t.substr(0,endi)
-				mut after  := t.substr(endi+1, t.len)
-				mut before := aft.substr(0, brac)
-				s = before + '<em>' + tobold + '</em>' + after
+				s = aft.substr(0, brac) + '<em>' + t.substr(0,endi) + '</em>' + t.substr(endi+1, t.len)
 			}
 		}
 		aft = s
@@ -34,10 +31,7 @@ pub fn parse_italic(text string) string {
 		if t != ' ' {
 			mut endi := t.index('_') or {-1}
 			if endi != -1 {
-				mut tobold := t.substr(0,endi)
-				mut after  := t.substr(endi+1, t.len)
-				mut before := aft.substr(0, brac)
-				s = before + '<em>' + tobold + '</em>' + after
+				s = aft.substr(0, brac) + '<em>' + t.substr(0,endi) + '</em>' + t.substr(endi+1, t.len)
 			}
 		}
 		aft = s
