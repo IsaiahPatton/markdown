@@ -1,5 +1,5 @@
 # markdown
-Markdown module for V. For now, it uses the [md4c](https://github.com/mity/md4c) library for parsing markdown files to HTML and soon it will be rewritten from scratch to pure V.
+Markdown module for V. For now, it uses pure V for parsing markdown files to HTML.
 
 ## Usage
 ```v
@@ -32,3 +32,4 @@ git clone https://github.com/vlang/markdown.git ~/.vmodules/markdown
 
 ## Contributors
 - Ned Palacios ([@nedpals](https://github.com/nedpals))
+- Isaiah ([@isaiahpatton](https://github.com/isaiahpatton/))

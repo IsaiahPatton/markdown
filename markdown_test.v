@@ -1,5 +1,7 @@
 /*
- * Varkdown - Markdown parser for V
+ * Markdown parser for V
+ *
+ * Copyright (c) 2020 Vlang
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
