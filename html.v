@@ -1,9 +1,7 @@
 /*
- * MD4C: Markdown parser for C
- * (http://github.com/mity/md4c)
+ * 'Varkdown' - Markdown parser for V
  *
- * Copyright (c) 2016-2019 Martin Mitáš 
- * Copyright (c) 2020 Ned Palacios (V bindings)
+ * Copyright (c) 2021 Isaiah Patton
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -23,30 +21,19 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-
 module markdown
 
-import strings
-
-fn C.md_html(orig_input charptr, orig_input_size u32, process_output ProcessFn, userdata voidptr, parser_flags u32, renderer_flags u32) int
-
-const (
-	need_html_esc_flag = 0x1
-	need_url_esc_flag  = 0x2
-	md_html_flag_debug = 0x0001
-	md_html_flag_verbatim_entities = 0x0002
-	md_html_flag_skip_utf8_bom = 0x0004
-)
-
-type ProcessFn = fn (t charptr, s u32, x voidptr)
-
-fn write_data_cb(txt charptr, size u32, mut sb strings.Builder) {
-	s := tos(byteptr(txt), int(size))
-	sb.write(s)
-}
+import parsers
 
 pub fn to_html(input string) string {
-	mut wr := strings.new_builder(200)
-	C.md_html(input.str, input.len, write_data_cb, &wr, C.MD_DIALECT_GITHUB, 0)
-	return wr.str().trim_space()
+	mut s := input
+
+	if input.len <= 0 { return "<br>" } // TODO: better support markdown new lines
+
+	s = parsers.parse_headers(s)
+	s = parsers.parse_imagelink(s)
+	s = parsers.parse_image(s)
+	s = parsers.parse_links(s)
+
+	return s
 }

@@ -1,0 +1,15 @@
+TODO:
+	- Bold
+	- Italic
+	- Codeblock
+	- Blockquote
+	- Horizontal Rule
+	- Lists
+	- Reference Link
+	- Option to output plain text instead of HTML
+
+Can parse:
+	- Link
+	- Image
+	- Image with link
+	- Headers (h1 to h6)
