@@ -34,6 +34,7 @@ pub fn to_html(input string) string {
 	s = parsers.parse_imagelink(s)
 	s = parsers.parse_image(s)
 	s = parsers.parse_links(s)
+	s = parsers.parse_bold(s)
 
 	return s
 }
