@@ -4,7 +4,6 @@ module parsers
  * Parse a Markdown image into HTML
  * 
  * @author Isaiah
- * @version 0.0.1
  */
 pub fn parse_image(text string) string {
 	mut s := text

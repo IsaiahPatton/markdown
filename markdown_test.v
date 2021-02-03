@@ -65,6 +65,13 @@ fn test_to_html() {
 	text = '_This is Italic_ *So is this* But this is not'
 	result = to_html(text)
 	assert result == '<em>This is Italic</em> <em>So is this</em> But this is not'
+
+	//
+	// Test Bold & Italic Together
+	//
+	text = '___This is Italic and  bold___ This is not ***But this is***'
+	result = to_html(text)
+	assert result == '<b><em>This is Italic and  bold</b></em> This is not <b><em>But this is</b></em>'
 }
 
 fn test_to_plain() {

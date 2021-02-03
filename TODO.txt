@@ -1,14 +1,15 @@
 TODO:
-	- Bold
-	- Italic
 	- Codeblock
 	- Blockquote
 	- Horizontal Rule
 	- Lists
-	- Reference Link
+	- Reference Links
 	- Option to output plain text instead of HTML
 
 Can parse:
+	- Bold
+	- Italic
+	- Bold and Italic together
 	- Link
 	- Image
 	- Image with link

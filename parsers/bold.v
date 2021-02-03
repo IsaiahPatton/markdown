@@ -1,7 +1,7 @@
 module parsers
 
 /**
- * TODO
+ * Parse bold in Markdown text
  */
 pub fn parse_bold(text string) string {
 	mut s := text
@@ -11,7 +11,6 @@ pub fn parse_bold(text string) string {
 	for brac != -1 {
 		aft = s
 		mut t := aft.substr(brac+2, aft.len)
-		println(t)
 		if t != ' ' {
 			mut endi := t.index('**') or {-1}
 			if endi != -1 {
@@ -30,7 +29,6 @@ pub fn parse_bold(text string) string {
 	for brac != -1 {
 		aft = s
 		mut t := aft.substr(brac+2, aft.len)
-		println(t)
 		if t != ' ' {
 			mut endi := t.index('__') or {-1}
 			if endi != -1 {
