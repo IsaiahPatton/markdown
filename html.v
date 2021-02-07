@@ -25,17 +25,54 @@ module markdown
 
 import parsers
 
-pub fn to_html(input string) string {
-	mut s := input
+pub fn array_to_html(input []string) string {
+	mut ret := ''
+	for i, str in input {
+		if i == 0 {
+			if input.len > 1 {
+				ret += parse(str, 'nul', input[i+1]) + '\n'
+			} else {
+				ret += parse(str, 'nul', 'nul')
+			}
+		} else if i+1 >= input.len {
+			ret += parse(str, input[i-1], "nul") + '\n'
+		} else {
+			ret += parse(str, input[i-1], input[i+1]) + '\n'
+		}
+	}
+	return ret
+}
 
-	if input.len <= 0 { return "<br>" } // TODO: better support markdown new lines
+pub fn to_html(input ...string) string {
+	mut ret := ''
+	for i, str in input {
+		if i == 0 {
+			if input.len > 1 {
+				ret += parse(str, 'nul', input[i+1])
+			} else  {
+				ret += parse(str, 'nul', 'nul')
+			}
+		} else if i+1 >= input.len {
+			ret += parse(str, input[i-1], "nul")
+		} else {
+			ret += parse(str, input[i-1], input[i+1])
+		}
+	}
+	return ret
+}
 
+fn parse(str string, before string, after string) string {
+	mut s := str
+	println(before + '/' + after)
+
+	if s.len <= 0 { return "<br>" } // TODO: better support markdown new line
+
+	s = parsers.parse_hr(s, before, after)
 	s = parsers.parse_headers(s)
 	s = parsers.parse_imagelink(s)
 	s = parsers.parse_image(s)
 	s = parsers.parse_links(s)
 	s = parsers.parse_bold(s)
 	s = parsers.parse_italic(s)
-
 	return s
 }

@@ -1,7 +1,7 @@
 /*
  * Markdown parser for V
  *
- * Copyright (c) 2020 Vlang
+ * Copyright (c) 2021 Vlang
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -72,6 +72,13 @@ fn test_to_html() {
 	text = '___This is Italic and  bold___ This is not ***But this is***'
 	result = to_html(text)
 	assert result == '<b><em>This is Italic and  bold</b></em> This is not <b><em>But this is</b></em>'
+
+	// 
+	// Test Markdown HR
+	//
+	mut textb := [' ', '---', '  ']
+	result = array_to_html(textb)
+	assert result.split('\n')[1] == '<hr>'
 }
 
 fn test_to_plain() {
